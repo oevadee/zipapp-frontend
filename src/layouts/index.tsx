@@ -1,5 +1,10 @@
-import { Box } from "@chakra-ui/react";
 import React from "react";
+import styled from "styled-components";
+
+const SWrapper = styled.div`
+  display: flex;
+  min-height: 100vh;
+`;
 
 interface Props {
   children: React.ReactNode;
@@ -7,8 +12,8 @@ interface Props {
 
 export const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <Box maxW={1200} minH="100vh" alignItems="center" flexDir="column">
+    <SWrapper>
       <div>{children}</div>
-    </Box>
+    </SWrapper>
   );
 };
