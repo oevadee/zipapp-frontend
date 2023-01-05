@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "../layouts";
-import LoginView from "../views/login";
+import { LoginView } from "../views/login";
 
 const LoginPage = () => {
   return (

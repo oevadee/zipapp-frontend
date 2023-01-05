@@ -1,14 +1,26 @@
 export const theme = {
   color: {
-    black: "#000000",
-    richBlack30: "#07080A",
-    richBlack20: "#14181D",
-    gunmetal: "#212930",
-    charcoal: "#34414C",
+    black: "#0D1F2D",
+    charcoal: "#738290",
     white: "#ffffff",
-    primary: "#E8A92D",
+    offWhite: "#EDE6F2",
+    primary: "#B33951",
+    secondary: "#E3D081",
   },
   border: {
-    input: "1px solid #E8A92D",
+    input: "1px solid #212930",
+    inputHover: "1px solid #B33951",
+  },
+  font: {
+    size: {
+      small: "0.75rem",
+      regular: "1rem",
+    },
+    weight: {
+      light: 300,
+      regular: 400,
+      medium: 500,
+      bold: 700,
+    },
   },
 };

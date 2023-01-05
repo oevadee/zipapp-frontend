@@ -6,6 +6,11 @@ const SWrapper = styled.div`
   min-height: 100vh;
 `;
 
+const SMain = styled.main`
+  width: 100%;
+  heigth: 100vh;
+`;
+
 interface Props {
   children: React.ReactNode;
 }
@@ -13,7 +18,7 @@ interface Props {
 export const Layout: React.FC<Props> = ({ children }) => {
   return (
     <SWrapper>
-      <div>{children}</div>
+      <SMain>{children}</SMain>
     </SWrapper>
   );
 };
