@@ -13,7 +13,7 @@ const buttonStyles = css<{ secondary?: boolean }>`
     secondary ? theme.color.secondary : theme.color.primary};
   border: none;
   cursor: pointer;
-  font-size: ${({ theme }) => theme.font.size.regular};
+  font-size: ${({ theme }) => theme.font.size.small};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   text-transform: uppercase;
   text-decoration: none;
@@ -23,7 +23,7 @@ const SButton = styled.button`
   ${buttonStyles}
 `;
 
-const SLink = styled(Link)`
+const SLink = styled(Link)<{ secondary?: boolean }>`
   ${buttonStyles}
 `;
 
@@ -43,8 +43,8 @@ export const Button: React.FC<Props> = ({
   return (
     <>
       {href ? (
-        <SLink href={href} type={type} secondary>
-          {children}
+        <SLink href={href} type={type}>
+          {children || "Click"}
         </SLink>
       ) : (
         <SButton type={type} secondary={secondary}>

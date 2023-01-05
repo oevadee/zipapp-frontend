@@ -31,8 +31,13 @@ export const RegisterView = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (values) => {
-    console.log(values.email);
+  const onSubmit: SubmitHandler<FormData> = ({
+    email,
+    password,
+    confirmPassword,
+  }) => {
+    if (password === confirmPassword && email) {
+    }
     reset();
   };
 
