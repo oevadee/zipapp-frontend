@@ -1,23 +1,56 @@
+import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const SButton = styled.button`
+const buttonStyles = css<{ secondary?: boolean }>`
   color: white;
   display: inline-block;
-  padding: 12px;
+  padding: 0.5rem;
   border-radius: 5px;
   margin: 0.5rem 0.75rem;
   font-weight: bold;
-  background-color: ${({ theme }) => theme.color.primary};
+  background-color: ${({ theme, secondary }) =>
+    secondary ? theme.color.secondary : theme.color.primary};
   border: none;
   cursor: pointer;
+  font-size: ${({ theme }) => theme.font.size.regular};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  text-transform: uppercase;
+  text-decoration: none;
+`;
+
+const SButton = styled.button`
+  ${buttonStyles}
+`;
+
+const SLink = styled(Link)`
+  ${buttonStyles}
 `;
 
 interface Props {
   children?: React.ReactNode;
   type?: "button" | "submit" | "reset";
+  secondary?: boolean;
+  href?: string;
 }
 
-export const Button: React.FC<Props> = ({ children, type = "submit" }) => {
-  return <SButton type={type}>{children || "Click"}</SButton>;
+export const Button: React.FC<Props> = ({
+  children,
+  type = "submit",
+  secondary,
+  href,
+}) => {
+  return (
+    <>
+      {href ? (
+        <SLink href={href} type={type} secondary>
+          {children}
+        </SLink>
+      ) : (
+        <SButton type={type} secondary={secondary}>
+          {children || "Click"}
+        </SButton>
+      )}
+    </>
+  );
 };

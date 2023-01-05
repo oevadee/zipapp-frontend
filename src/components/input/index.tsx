@@ -5,6 +5,7 @@ import styled from "styled-components";
 const SWrapper = styled.div`
   position: relative;
   width: 100%;
+  margin-bottom: 0.75rem;
 `;
 
 const SInput = styled.input`
@@ -48,11 +49,12 @@ const SLabel = styled.label`
 `;
 
 interface Props {
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<any>;
   name: string;
   label: string;
   type?: React.HTMLInputTypeAttribute;
   placeholder?: string;
+  required?: boolean;
 }
 
 export const Input: React.FC<Props> = ({
@@ -61,10 +63,16 @@ export const Input: React.FC<Props> = ({
   label,
   type = "text",
   placeholder = "Insert text here",
+  required,
 }) => {
   return (
     <SWrapper>
-      <SInput type={type} placeholder={placeholder} {...register(name)} />
+      <SInput
+        type={type}
+        placeholder={placeholder}
+        {...register(name)}
+        required={required}
+      />
       <SLabel>{label}</SLabel>
     </SWrapper>
   );
