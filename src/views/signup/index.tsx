@@ -26,7 +26,6 @@ type FormData = {
   email: string;
   password: string;
   confirmPassword: string;
-  test: string;
 };
 
 export const SignupView = () => {
