@@ -1,44 +1,32 @@
+import * as React from "react";
 import { NextComponentType } from "next";
 import { useRouter } from "next/navigation";
-import * as React from "react";
+import { protectedRoutes, publicRoutes } from "../constants/routes";
 
-const authRoute = (Component: NextComponentType) => {
+const AuthRoute = (Component: NextComponentType) => {
   return (props: any) => {
     const router = useRouter();
-    const [user, setUser] = React.useState(null);
     const [authenticated, setAuthenticated] = React.useState(false);
+
     React.useEffect(() => {
-      const checkToken = async () => {
-        const token = localStorage.getItem("access_token");
+      const token = localStorage.getItem("access_token");
 
-        if (!token) {
-          router.replace("/signin");
-        } else {
-          console.log(token);
-
-          //   const response: any = await findUser(JSON.parse(token));
-          //   if (!response.ok) {
-          //     localStorage.removeItem("token");
-          //     router.replace("/");
-          //   } else {
-          //     const userData = await response.json();
-          //     if (!userData.currentUser) {
-          //       router.replace("/");
-          //       localStorage.removeItem("token");
-          //     } else {
-          //       setUser(userData.currentUser);
-          //       setAuthenticated(true);
-          //     }
-          //   }
+      if (!token && protectedRoutes.includes(window.location.href)) {
+        router.replace("/signin");
+      } else {
+        setAuthenticated(true);
+        if (publicRoutes.includes(window.location.href)) {
+          router.replace("/");
         }
-      };
-      checkToken();
+      }
     }, []);
 
     if (authenticated) {
       return <Component {...props} />;
     } else {
+      return null;
     }
   };
 };
-export default authRoute;
+
+export default AuthRoute;

@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { Layout } from "../layouts";
 import { SignupView } from "../views/signup";
-import authRoute from "./authRoute";
+import PublicRoute from "./publicRoute";
 
 const SignupPage = () => {
   return (
@@ -18,4 +18,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default PublicRoute(SignupPage);

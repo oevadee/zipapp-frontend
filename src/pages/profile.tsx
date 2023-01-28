@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { Layout } from "../layouts";
 import { ProfileView } from "../views/profile";
-import authRoute from "./authRoute";
+import AuthRoute from "./authRoute";
 
 const ProfilePage = () => {
   return (
@@ -18,4 +18,4 @@ const ProfilePage = () => {
   );
 };
 
-export default authRoute(ProfilePage);
+export default AuthRoute(ProfilePage);
