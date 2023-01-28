@@ -5,6 +5,8 @@ import { Button } from "../../components/button";
 import { Input } from "../../components/input";
 import { signupSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const SWrapper = styled.div`
   display: flex;
@@ -24,19 +26,33 @@ type FormData = {
   email: string;
   password: string;
   confirmPassword: string;
+  test: string;
 };
 
 export const SignupView = () => {
   const { register, handleSubmit, reset } = useForm<FormData>({
     resolver: yupResolver(signupSchema),
   });
+  const { push } = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = ({
+  const onSubmit: SubmitHandler<FormData> = async ({
     email,
     password,
     confirmPassword,
   }) => {
     if (password === confirmPassword && email) {
+      const { data } = await axios.post("http://localhost:3000/auth/signup", {
+        email,
+        password,
+        confirmPassword,
+      });
+
+      if (data.access_token) {
+        localStorage.setItem("access_token", data.access_token);
+        push("/");
+      } else {
+        console.log(data);
+      }
     }
     reset();
   };
