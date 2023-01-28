@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { Layout } from "../layouts";
 import { SignupView } from "../views/signup";
+import authRoute from "./authRoute";
 
 const SignupPage = () => {
   return (
