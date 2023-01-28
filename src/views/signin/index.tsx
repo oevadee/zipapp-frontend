@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "./schema";
+import { signinSchema } from "./schema";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const SWrapper = styled.div`
   display: flex;
@@ -26,12 +28,24 @@ type FormData = {
 };
 
 export const SigninView = () => {
-  const { register, handleSubmit } = useForm<FormData>({
-    resolver: yupResolver(loginSchema),
+  const { register, handleSubmit, reset } = useForm<FormData>({
+    resolver: yupResolver(signinSchema),
   });
+  const { push } = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = (values) => {
-    console.log(values);
+  const onSubmit: SubmitHandler<FormData> = async ({ email, password }) => {
+    const { data } = await axios.post("http://localhost:3000/auth/signin", {
+      email,
+      password,
+    });
+
+    if (data.access_token) {
+      localStorage.setItem("access_token", data.access_token);
+      push("/");
+    } else {
+      console.log(data);
+    }
+    reset();
   };
 
   return (
