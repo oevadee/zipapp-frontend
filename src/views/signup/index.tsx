@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Button } from "../../components/button";
 import { Input } from "../../components/input";
-import { registerSchema } from "./schema";
+import { signupSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const SWrapper = styled.div`
@@ -26,9 +26,9 @@ type FormData = {
   confirmPassword: string;
 };
 
-export const RegisterView = () => {
+export const SignupView = () => {
   const { register, handleSubmit, reset } = useForm<FormData>({
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(signupSchema),
   });
 
   const onSubmit: SubmitHandler<FormData> = ({
@@ -69,7 +69,7 @@ export const RegisterView = () => {
           required
         />
         <SButtonsWrapper>
-          <Button type="button" secondary href="/login">
+          <Button type="button" secondary href="/signin">
             Login
           </Button>
           <Button>Submit</Button>
