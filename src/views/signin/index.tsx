@@ -25,7 +25,7 @@ type FormData = {
   password: string;
 };
 
-export const LoginView = () => {
+export const SigninView = () => {
   const { register, handleSubmit } = useForm<FormData>({
     resolver: yupResolver(loginSchema),
   });
@@ -52,7 +52,7 @@ export const LoginView = () => {
           placeholder="Insert password here"
         />
         <SButtonsWrapper>
-          <Button type="button" secondary href="/register">
+          <Button type="button" secondary href="/signup">
             Register
           </Button>
           <Button>Submit</Button>

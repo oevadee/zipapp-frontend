@@ -1,20 +1,20 @@
 import Head from "next/head";
 import React from "react";
 import { Layout } from "../layouts";
-import { RegisterView } from "../views/register";
+import { SignupView } from "../views/signup";
 
-const RegisterPage = () => {
+const SignupPage = () => {
   return (
     <>
       <Head>
-        <title>Register</title>
+        <title>Signup</title>
         <meta name="description" content="Register for zipapp" />
       </Head>
       <Layout>
-        <RegisterView />
+        <SignupView />
       </Layout>
     </>
   );
 };
 
-export default RegisterPage;
+export default SignupPage;
