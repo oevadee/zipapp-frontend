@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signinSchema } from "./schema";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useUser } from "../../context/user";
 
 const SWrapper = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ export const SigninView = () => {
     resolver: yupResolver(signinSchema),
   });
   const { push } = useRouter();
+  const { setUser } = useUser();
 
   const onSubmit: SubmitHandler<FormData> = async ({ email, password }) => {
     const { data } = await axios.post("http://localhost:3000/auth/signin", {
@@ -40,6 +42,7 @@ export const SigninView = () => {
     });
 
     if (data.access_token) {
+      setUser({ email });
       localStorage.setItem("access_token", data.access_token);
       push("/");
     } else {
