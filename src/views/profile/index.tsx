@@ -1,9 +1,18 @@
+import { useRouter } from "next/router";
 import * as React from "react";
 import { Button } from "../../components/button";
 
-export const ProfileView = () => {
+const getUser = async () => {
+  const response = await fetch("http://localhost:3000/user");
+  return response.json();
+};
+
+export const ProfileView = async () => {
+  const { push } = useRouter();
+
   const handleLogout = () => {
     localStorage.removeItem("access_token");
+    push("/");
   };
 
   return (

@@ -7,7 +7,6 @@ import { signupSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useUser } from "../../context/user";
 
 const SWrapper = styled.div`
   display: flex;
@@ -34,7 +33,6 @@ export const SignupView = () => {
     resolver: yupResolver(signupSchema),
   });
   const { push } = useRouter();
-  const { setUser } = useUser();
 
   const onSubmit: SubmitHandler<FormData> = async ({
     email,
@@ -50,7 +48,6 @@ export const SignupView = () => {
 
       if (data.access_token) {
         localStorage.setItem("access_token", data.access_token);
-        setUser({ email });
         push("/");
       } else {
         console.log(data);
