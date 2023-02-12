@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-export const IndexView: React.FC = () => {
+const IndexPage = () => {
   return (
     <div>
       <Image
@@ -14,3 +14,5 @@ export const IndexView: React.FC = () => {
     </div>
   );
 };
+
+export default IndexPage;

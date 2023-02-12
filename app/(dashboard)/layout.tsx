@@ -1,30 +1,35 @@
+"use client";
+
 import * as React from "react";
-import { NextComponentType } from "next";
 import { useRouter } from "next/navigation";
 import { protectedRoutes, publicRoutes } from "../constants/routes";
 
-const AuthRoute = (Component: NextComponentType) => {
-  const router = useRouter();
+interface Props {
+  children: React.ReactNode;
+}
+
+const DashboardLayout = ({ children }: Props) => {
+  const { replace } = useRouter();
   const [authenticated, setAuthenticated] = React.useState(false);
 
   React.useEffect(() => {
     const token = localStorage.getItem("access_token");
 
-    if (!token && protectedRoutes.includes(window.location.href)) {
-      router.replace("/signin");
-    } else {
+    if (token) {
       setAuthenticated(true);
       if (publicRoutes.includes(window.location.href)) {
-        router.replace("/");
+        replace("/");
       }
+    } else {
+      replace("/signin");
     }
   }, []);
 
+  React.useEffect(() => console.log(authenticated), [authenticated]);
+
   if (authenticated) {
-    return <Component />;
-  } else {
-    return null;
+    return children;
   }
 };
 
-export default AuthRoute;
+export default DashboardLayout;

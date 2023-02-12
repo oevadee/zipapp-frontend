@@ -1,19 +1,23 @@
-import { useRouter } from "next/router";
-import * as React from "react";
+"use client";
+
+import { useRouter } from "next/navigation";
+import React from "react";
 import { Button } from "../../components/button";
 
-export const ProfileView = () => {
+const ProfilePage = () => {
   const { push } = useRouter();
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
-    push("/");
+    push("/signin");
   };
 
   return (
-    <div>
-      <h1>ProfileView</h1>
+    <>
+      <h1>Profile Page</h1>
       <Button onClick={handleLogout}>Logout</Button>
-    </div>
+    </>
   );
 };
+
+export default ProfilePage;

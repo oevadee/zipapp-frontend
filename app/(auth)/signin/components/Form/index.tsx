@@ -1,12 +1,14 @@
+"use client";
+
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
-import { Button } from "../../components/button";
-import { Input } from "../../components/input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signinSchema } from "./schema";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { Input } from "../../../../components/input";
+import { Button } from "../../../../components/button";
 
 const SWrapper = styled.div`
   display: flex;
@@ -27,7 +29,7 @@ type FormData = {
   password: string;
 };
 
-export const SigninView = () => {
+export const Form = () => {
   const { register, handleSubmit, reset } = useForm<FormData>({
     resolver: yupResolver(signinSchema),
   });
