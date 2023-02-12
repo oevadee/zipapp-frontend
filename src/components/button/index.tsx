@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import * as React from "react";
 import styled, { css } from "styled-components";
 
 const buttonStyles = css<{ secondary?: boolean }>`
@@ -32,6 +32,7 @@ interface Props {
   type?: "button" | "submit" | "reset";
   secondary?: boolean;
   href?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Button: React.FC<Props> = ({
@@ -39,6 +40,7 @@ export const Button: React.FC<Props> = ({
   type = "submit",
   secondary,
   href,
+  ...rest
 }) => {
   return (
     <>
@@ -47,7 +49,7 @@ export const Button: React.FC<Props> = ({
           {children || "Click"}
         </SLink>
       ) : (
-        <SButton type={type} secondary={secondary}>
+        <SButton type={type} secondary={secondary} {...rest}>
           {children || "Click"}
         </SButton>
       )}

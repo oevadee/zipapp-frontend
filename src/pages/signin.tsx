@@ -2,6 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { Layout } from "../layouts";
 import { SigninView } from "../views/signin";
+import PublicRoute from "./publicRoute";
 
 const SigninPage = () => {
   return (
@@ -17,4 +18,4 @@ const SigninPage = () => {
   );
 };
 
-export default SigninPage;
+export default PublicRoute(SigninPage);
