@@ -2,7 +2,17 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { protectedRoutes, publicRoutes } from "../constants/routes";
+import { publicRoutes } from "../constants/routes";
+import styled from "styled-components";
+import { Navigation } from "../modules/navigation";
+
+const SWrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+`;
 
 interface Props {
   children: React.ReactNode;
@@ -25,10 +35,13 @@ const DashboardLayout = ({ children }: Props) => {
     }
   }, []);
 
-  React.useEffect(() => console.log(authenticated), [authenticated]);
-
   if (authenticated) {
-    return children;
+    return (
+      <SWrapper>
+        <Navigation />
+        {children}
+      </SWrapper>
+    );
   }
 };
 

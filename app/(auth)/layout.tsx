@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import * as React from "react";
-import { protectedRoutes, publicRoutes } from "../constants/routes";
+import { publicRoutes } from "../constants/routes";
 
 interface Props {
   children: React.ReactNode;
@@ -25,10 +25,6 @@ const AuthLayout = ({ children }: Props) => {
         replace("/");
       }
     }
-    console.log(authenticated);
-    // if (publicRoutes.includes(window.location.href)) {
-    //   replace("/");
-    // }
   }, []);
 
   if (!authenticated) {
