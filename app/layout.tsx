@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { UserContextProvider } from "./context/user";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { theme } from "./styles/theme";
 
@@ -33,12 +34,14 @@ const RootLayout: React.FC<Props> = ({ children }) => {
         />
       </head>
       <body>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <SWrapper>
-            <SMain>{children}</SMain>
-          </SWrapper>
-        </ThemeProvider>
+        <UserContextProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <SWrapper>
+              <SMain>{children}</SMain>
+            </SWrapper>
+          </ThemeProvider>
+        </UserContextProvider>
       </body>
     </html>
   );

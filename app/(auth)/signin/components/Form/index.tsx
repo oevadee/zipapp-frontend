@@ -9,6 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Input } from "../../../../components/input";
 import { Button } from "../../../../components/button";
+import { useUser } from "../../../../context/user";
 
 const SWrapper = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ export const Form = () => {
     resolver: yupResolver(signinSchema),
   });
   const { push } = useRouter();
+  const { setUser } = useUser();
 
   const onSubmit: SubmitHandler<FormData> = async ({ email, password }) => {
     const { data } = await axios.post("http://localhost:3000/auth/signin", {
@@ -43,6 +45,9 @@ export const Form = () => {
 
     if (data.access_token) {
       localStorage.setItem("access_token", data.access_token);
+      setUser({
+        email: data.access_token,
+      });
       push("/");
     } else {
       console.log(data);
