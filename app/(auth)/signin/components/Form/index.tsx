@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import { Input } from "../../../../components/input";
 import { Button } from "../../../../components/button";
 import { useUser } from "../../../../context/user";
+import { decodeJwtToken } from "../../../../utils/decodeJwtToken";
+import { User } from "../../../../types/user";
 
 const SWrapper = styled.div`
   display: flex;
@@ -45,8 +47,10 @@ export const Form = () => {
 
     if (data.access_token) {
       localStorage.setItem("access_token", data.access_token);
+      const decoded = decodeJwtToken<User>(data.access_token);
       setUser({
-        email: data.access_token,
+        id: decoded.id,
+        email: decoded.email,
       });
       push("/");
     } else {

@@ -1,4 +1,5 @@
 import * as React from "react";
+import jwt_decode from "jwt-decode";
 import { User } from "../../types/user";
 
 interface UserStore {
@@ -20,8 +21,10 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
   React.useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
+      const decoded = jwt_decode<User>(token);
       setUser({
-        email: token,
+        id: decoded.id,
+        email: decoded.email,
       });
     }
   }, []);
