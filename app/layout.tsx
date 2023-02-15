@@ -10,7 +10,7 @@ const SWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: ${({ theme }) => theme.color.spaceCadet};
   color: ${({ theme }) => theme.color.white};
 `;
@@ -18,7 +18,6 @@ const SWrapper = styled.div`
 const SMain = styled.main`
   width: 100%;
   max-width: ${({ theme }) => theme.maxWidth.desktop};
-  height: 100%;
 `;
 
 interface Props {

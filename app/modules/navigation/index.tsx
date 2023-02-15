@@ -75,6 +75,9 @@ export const Navigation = () => {
         <SNavListItem isLink>
           <Link href="/profile">Profile</Link>
         </SNavListItem>
+        <SNavListItem isLink>
+          <Link href="/users">Users</Link>
+        </SNavListItem>
         <SNavListItem>
           <Button onClick={handleLogout}>Logout</Button>
         </SNavListItem>

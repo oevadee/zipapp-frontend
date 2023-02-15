@@ -23,7 +23,7 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
     if (token) {
       const decoded = jwt_decode<User>(token);
       setUser({
-        id: decoded.id,
+        _id: decoded._id,
         email: decoded.email,
       });
     }

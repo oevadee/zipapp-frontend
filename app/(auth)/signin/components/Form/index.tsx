@@ -49,7 +49,7 @@ export const Form = () => {
       localStorage.setItem("access_token", data.access_token);
       const decoded = decodeJwtToken<User>(data.access_token);
       setUser({
-        id: decoded.id,
+        _id: decoded._id,
         email: decoded.email,
       });
       push("/");
