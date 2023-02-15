@@ -1,12 +1,14 @@
+"use client";
+
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
-import { Button } from "../../components/button";
-import { Input } from "../../components/input";
+import { signupSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signinSchema } from "./schema";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { Input } from "../../../../components/input";
+import { Button } from "../../../../components/button";
 
 const SWrapper = styled.div`
   display: flex;
@@ -25,25 +27,33 @@ const SButtonsWrapper = styled.div`
 type FormData = {
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
-export const SigninView = () => {
+export const Form = () => {
   const { register, handleSubmit, reset } = useForm<FormData>({
-    resolver: yupResolver(signinSchema),
+    resolver: yupResolver(signupSchema),
   });
   const { push } = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = async ({ email, password }) => {
-    const { data } = await axios.post("http://localhost:3000/auth/signin", {
-      email,
-      password,
-    });
+  const onSubmit: SubmitHandler<FormData> = async ({
+    email,
+    password,
+    confirmPassword,
+  }) => {
+    if (password === confirmPassword && email) {
+      const { data } = await axios.post("http://localhost:3000/auth/signup", {
+        email,
+        password,
+        confirmPassword,
+      });
 
-    if (data.access_token) {
-      localStorage.setItem("access_token", data.access_token);
-      push("/");
-    } else {
-      console.log(data);
+      if (data.access_token) {
+        localStorage.setItem("access_token", data.access_token);
+        push("/");
+      } else {
+        console.log(data);
+      }
     }
     reset();
   };
@@ -57,6 +67,7 @@ export const SigninView = () => {
           register={register}
           name="email"
           placeholder="Insert email here"
+          required
         />
         <Input
           label="password"
@@ -64,10 +75,19 @@ export const SigninView = () => {
           register={register}
           name="password"
           placeholder="Insert password here"
+          required
+        />
+        <Input
+          label="Confirm password"
+          type="password"
+          register={register}
+          name="confirmPassword"
+          placeholder="Confirm password here"
+          required
         />
         <SButtonsWrapper>
-          <Button type="button" secondary href="/signup">
-            Register
+          <Button type="button" secondary href="/signin">
+            Login
           </Button>
           <Button>Submit</Button>
         </SButtonsWrapper>

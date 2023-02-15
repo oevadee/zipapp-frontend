@@ -1,12 +1,17 @@
+"use client";
+
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
-import { Button } from "../../components/button";
-import { Input } from "../../components/input";
-import { signupSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { signinSchema } from "./schema";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { Input } from "../../../../components/input";
+import { Button } from "../../../../components/button";
+import { useUser } from "../../../../context/user";
+import { decodeJwtToken } from "../../../../utils/decodeJwtToken";
+import { User } from "../../../../types/user";
 
 const SWrapper = styled.div`
   display: flex;
@@ -25,33 +30,31 @@ const SButtonsWrapper = styled.div`
 type FormData = {
   email: string;
   password: string;
-  confirmPassword: string;
 };
 
-export const SignupView = () => {
+export const Form = () => {
   const { register, handleSubmit, reset } = useForm<FormData>({
-    resolver: yupResolver(signupSchema),
+    resolver: yupResolver(signinSchema),
   });
   const { push } = useRouter();
+  const { setUser } = useUser();
 
-  const onSubmit: SubmitHandler<FormData> = async ({
-    email,
-    password,
-    confirmPassword,
-  }) => {
-    if (password === confirmPassword && email) {
-      const { data } = await axios.post("http://localhost:3000/auth/signup", {
-        email,
-        password,
-        confirmPassword,
+  const onSubmit: SubmitHandler<FormData> = async ({ email, password }) => {
+    const { data } = await axios.post("http://localhost:3000/auth/signin", {
+      email,
+      password,
+    });
+
+    if (data.access_token) {
+      localStorage.setItem("access_token", data.access_token);
+      const decoded = decodeJwtToken<User>(data.access_token);
+      setUser({
+        id: decoded.id,
+        email: decoded.email,
       });
-
-      if (data.access_token) {
-        localStorage.setItem("access_token", data.access_token);
-        push("/");
-      } else {
-        console.log(data);
-      }
+      push("/");
+    } else {
+      console.log(data);
     }
     reset();
   };
@@ -65,7 +68,6 @@ export const SignupView = () => {
           register={register}
           name="email"
           placeholder="Insert email here"
-          required
         />
         <Input
           label="password"
@@ -73,19 +75,10 @@ export const SignupView = () => {
           register={register}
           name="password"
           placeholder="Insert password here"
-          required
-        />
-        <Input
-          label="Confirm password"
-          type="password"
-          register={register}
-          name="confirmPassword"
-          placeholder="Confirm password here"
-          required
         />
         <SButtonsWrapper>
-          <Button type="button" secondary href="/signin">
-            Login
+          <Button type="button" secondary href="/signup">
+            Register
           </Button>
           <Button>Submit</Button>
         </SButtonsWrapper>
