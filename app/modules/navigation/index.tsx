@@ -8,7 +8,7 @@ import { Button } from "../../components/button";
 const SNav = styled.nav`
   width: 100%;
   height: 60px;
-  padding: 2rem;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,8 +22,27 @@ const SNavList = styled.ul`
   list-style: none;
 `;
 
-const SNavListItem = styled.li`
+const SNavListItem = styled.li<{ isLink?: boolean }>`
   color: ${({ theme }) => theme.color.white};
+  position: relative;
+
+  &:before {
+    content: "";
+    height: 2px;
+    width: 0;
+    border-radius: 2rem;
+    position: absolute;
+    bottom: -0.25rem;
+    left: -0.4rem;
+    background-color: ${({ theme }) => theme.color.primary};
+  }
+
+  &:hover {
+    &:before {
+      ${({ isLink }) =>
+        isLink && "width: calc(100% + 0.8rem); transition: all 200ms ease-out;"}
+    }
+  }
 
   a {
     text-decoration: none;
@@ -50,10 +69,10 @@ export const Navigation = () => {
         color="#ffffff"
       />
       <SNavList>
-        <SNavListItem>
+        <SNavListItem isLink>
           <Link href="/">Home</Link>
         </SNavListItem>
-        <SNavListItem>
+        <SNavListItem isLink>
           <Link href="/profile">Profile</Link>
         </SNavListItem>
         <SNavListItem>

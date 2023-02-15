@@ -8,12 +8,17 @@ import { theme } from "./styles/theme";
 
 const SWrapper = styled.div`
   display: flex;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.color.spaceCadet};
+  color: ${({ theme }) => theme.color.white};
 `;
 
 const SMain = styled.main`
   width: 100%;
-  heigth: 100vh;
+  max-width: ${({ theme }) => theme.maxWidth.desktop};
+  height: 100%;
 `;
 
 interface Props {

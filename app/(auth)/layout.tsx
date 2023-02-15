@@ -2,7 +2,15 @@
 
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import styled from "styled-components";
 import { publicRoutes } from "../constants/routes";
+
+const SWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 interface Props {
   children: React.ReactNode;
@@ -28,7 +36,7 @@ const AuthLayout = ({ children }: Props) => {
   }, []);
 
   if (!authenticated) {
-    return children;
+    return <SWrapper>{children}</SWrapper>;
   }
 };
 

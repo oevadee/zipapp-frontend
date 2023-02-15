@@ -6,15 +6,7 @@ import { publicRoutes } from "../constants/routes";
 import styled from "styled-components";
 import { Navigation } from "../modules/navigation";
 
-const SWrapper = styled.div`
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 2rem;
-  background: ${({ theme }) => theme.color.spaceCadet};
-  color: ${({ theme }) => theme.color.white};
-`;
+const SWrapper = styled.div``;
 
 interface Props {
   children: React.ReactNode;

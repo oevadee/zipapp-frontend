@@ -26,4 +26,7 @@ export const theme = {
       bold: 700,
     },
   },
+  maxWidth: {
+    desktop: "1200px",
+  },
 };
