@@ -1,11 +1,14 @@
 export const theme = {
   color: {
     black: "#0D1F2D",
+    spaceCadet: "#2D3047",
     charcoal: "#738290",
-    white: "#ffffff",
+    white: "#F0F6F6",
     offWhite: "#EDE6F2",
-    primary: "#B33951",
-    secondary: "#E3D081",
+    primary: "#FF9505",
+    secondary: "#6C8EAD",
+    alertRed: "#D62246",
+    alertGreen: "#6BA368",
   },
   border: {
     input: "1px solid #212930",

@@ -12,6 +12,8 @@ const SWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 2rem;
+  background: ${({ theme }) => theme.color.spaceCadet};
+  color: ${({ theme }) => theme.color.white};
 `;
 
 interface Props {

@@ -10,8 +10,4 @@ export const GlobalStyle = createGlobalStyle`
   root {
     font-size: 16px;
   }
-  body {
-    color: #fff;
-    background: #000;
-  }
 `;

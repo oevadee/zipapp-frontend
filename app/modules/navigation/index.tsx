@@ -7,7 +7,7 @@ import { Button } from "../../components/button";
 
 const SNav = styled.nav`
   width: 100%;
-  height: 80px;
+  height: 60px;
   padding: 2rem;
   display: flex;
   align-items: center;

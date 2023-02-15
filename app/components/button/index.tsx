@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 const buttonStyles = css<{ secondary?: boolean }>`
   color: white;
   display: inline-block;
-  padding: 0.5rem;
+  padding: 6px 8px;
   border-radius: 5px;
   margin: 0.5rem 0.75rem;
   font-weight: bold;
@@ -23,7 +23,7 @@ const SButton = styled.button`
   ${buttonStyles}
 `;
 
-const SLink = styled(Link)<{ secondary?: boolean }>`
+const SLink = styled(Link)`
   ${buttonStyles}
 `;
 
