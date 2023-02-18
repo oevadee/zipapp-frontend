@@ -6,7 +6,9 @@ import { publicRoutes } from "../constants/routes";
 import styled from "styled-components";
 import { Navigation } from "../modules/navigation";
 
-const SWrapper = styled.div``;
+const SWrapper = styled.div`
+  padding: 0 2rem;
+`;
 
 interface Props {
   children: React.ReactNode;

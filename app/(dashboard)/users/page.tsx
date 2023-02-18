@@ -2,7 +2,13 @@
 
 import axios from "axios";
 import React from "react";
+import styled from "styled-components";
 import { User } from "../../types/user";
+import { UsersList } from "./components/users-list";
+
+const SHeading = styled.h1`
+  margin-bottom: 1rem;
+`;
 
 const UsersPage = () => {
   const [users, setUsers] = React.useState<User[] | null>(null);
@@ -20,19 +26,14 @@ const UsersPage = () => {
     }
   }, []);
 
+  React.useEffect(() => {
+    console.log(users);
+  }, [users]);
+
   return (
     <>
-      <h1>Users Page</h1>
-      <ul>
-        {users?.map(({ _id, email }) => (
-          <li key={_id}>
-            <div>
-              <p>id: {_id}</p>
-              <p>email: {email}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <SHeading>Users Page</SHeading>
+      <UsersList users={users} />
     </>
   );
 };

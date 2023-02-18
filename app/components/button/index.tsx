@@ -7,7 +7,6 @@ const buttonStyles = css<{ secondary?: boolean }>`
   display: inline-block;
   padding: 6px 8px;
   border-radius: 5px;
-  margin: 0.5rem 0.75rem;
   font-weight: bold;
   background-color: ${({ theme, secondary }) =>
     secondary ? theme.color.secondary : theme.color.primary};
