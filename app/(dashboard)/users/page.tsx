@@ -26,10 +26,6 @@ const UsersPage = () => {
     }
   }, []);
 
-  React.useEffect(() => {
-    console.log(users);
-  }, [users]);
-
   return (
     <>
       <SHeading>Users Page</SHeading>

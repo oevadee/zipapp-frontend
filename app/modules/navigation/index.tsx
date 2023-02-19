@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import styled from "styled-components";
 import { Button } from "../../components/button";
+import { navItems } from "./navItems";
 
 const SNav = styled.nav`
   width: 100%;
@@ -51,11 +52,11 @@ const SNavListItem = styled.li<{ isLink?: boolean }>`
 `;
 
 export const Navigation = () => {
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
-    push("/signin");
+    replace("/signin");
   };
 
   return (
@@ -69,15 +70,11 @@ export const Navigation = () => {
         color="#ffffff"
       />
       <SNavList>
-        <SNavListItem isLink>
-          <Link href="/">Home</Link>
-        </SNavListItem>
-        <SNavListItem isLink>
-          <Link href="/profile">Profile</Link>
-        </SNavListItem>
-        <SNavListItem isLink>
-          <Link href="/users">Users</Link>
-        </SNavListItem>
+        {navItems.map(({ name, href }) => (
+          <SNavListItem key={href} isLink>
+            <Link href={href}>{name}</Link>
+          </SNavListItem>
+        ))}
         <SNavListItem>
           <Button onClick={handleLogout}>Logout</Button>
         </SNavListItem>
