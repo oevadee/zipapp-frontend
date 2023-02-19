@@ -21,10 +21,19 @@ const SWrapper = styled.div`
   height: 100%;
 `;
 
-const SButtonsWrapper = styled.div`
+const SButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  gap: 0.5rem;
+`;
+
+const SAlreadyHaveAnAccountWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin-left: auto;
+  font-size: ${({ theme }) => theme.font.size.small};
+  gap: 0.25rem;
 `;
 
 type FormData = {
@@ -76,12 +85,15 @@ export const Form = () => {
           name="password"
           placeholder="Insert password here"
         />
-        <SButtonsWrapper>
-          <Button type="button" secondary href="/signup">
-            Register
-          </Button>
+        <SButtonWrapper>
+          <SAlreadyHaveAnAccountWrapper>
+            <p>Already have an account?</p>
+            <Button href="/signup" variant="text">
+              Signup
+            </Button>
+          </SAlreadyHaveAnAccountWrapper>
           <Button>Submit</Button>
-        </SButtonsWrapper>
+        </SButtonWrapper>
       </form>
     </SWrapper>
   );

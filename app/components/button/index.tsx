@@ -2,20 +2,30 @@ import Link from "next/link";
 import * as React from "react";
 import styled, { css } from "styled-components";
 
-const buttonStyles = css<{ secondary?: boolean }>`
+type ButtonVariant = "primary" | "secondary" | "text";
+
+const buttonStyles = css<{ variant?: ButtonVariant }>`
   color: white;
   display: inline-block;
-  padding: 6px 8px;
+  padding: ${({ variant }) => (variant === "text" ? "" : "6px 8px")};
   border-radius: 5px;
   font-weight: bold;
-  background-color: ${({ theme, secondary }) =>
-    secondary ? theme.color.secondary : theme.color.primary};
+  background-color: ${({ theme, variant }) =>
+    variant === "secondary"
+      ? theme.color.secondary
+      : variant === "primary"
+      ? theme.color.primary
+      : "transparent"};
   border: none;
   cursor: pointer;
   font-size: ${({ theme }) => theme.font.size.small};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   text-transform: uppercase;
   text-decoration: none;
+
+  &:hover: {
+    color: ${({ variant, theme }) => variant === "text" && theme.color.primary};
+  }
 `;
 
 const SButton = styled.button`
@@ -29,7 +39,7 @@ const SLink = styled(Link)`
 interface Props {
   children?: React.ReactNode;
   type?: "button" | "submit" | "reset";
-  secondary?: boolean;
+  variant?: ButtonVariant;
   href?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -37,18 +47,18 @@ interface Props {
 export const Button: React.FC<Props> = ({
   children,
   type = "submit",
-  secondary,
+  variant = "primary",
   href,
   ...rest
 }) => {
   return (
     <>
       {href ? (
-        <SLink href={href} type={type}>
+        <SLink href={href} type={type} variant={variant}>
           {children || "Click"}
         </SLink>
       ) : (
-        <SButton type={type} secondary={secondary} {...rest}>
+        <SButton type={type} variant={variant} {...rest}>
           {children || "Click"}
         </SButton>
       )}

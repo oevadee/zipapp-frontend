@@ -5,7 +5,7 @@ import styled from "styled-components";
 const SWrapper = styled.div`
   position: relative;
   width: 100%;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 `;
 
 const SInput = styled.input`
@@ -21,20 +21,19 @@ const SInput = styled.input`
   border-bottom: ${({ theme }) => theme.border.input};
   display: inline-block;
   outline: none;
+  font-size: ${({ theme }) => theme.font.size.regular};
 
   &:focus {
-    border-bottom: ${({ theme }) => theme.border.inputHover};
+    border-bottom: ${({ theme }) => theme.border.inputFocus};
   }
 
   ::placeholder,
   ::-webkit-input-placeholder {
     color: ${({ theme }) => theme.color.charcoal};
-    font-size: ${({ theme }) => theme.font.size.small};
   }
 
   :-ms-input-placeholder {
     color: ${({ theme }) => theme.color.charcoal};
-    font-size: ${({ theme }) => theme.font.size.small};
   }
 `;
 
@@ -44,8 +43,8 @@ const SLabel = styled.label`
   margin-top: 0.5rem;
   text-transform: capitalize;
   color: ${({ theme }) => theme.color.charcoal};
-  font-size: ${({ theme }) => theme.font.size.regular};
-  font-weight: ${({ theme }) => theme.font.weight.bold};
+  font-size: ${({ theme }) => theme.font.size.large};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 interface Props {

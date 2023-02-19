@@ -11,13 +11,17 @@ export const theme = {
     alertGreen: "#6BA368",
   },
   border: {
-    input: "1px solid #212930",
-    inputHover: "1px solid #B33951",
+    input: "0.125rem solid #212930",
+    inputFocus: "0.125rem solid #FF9505",
+  },
+  radius: {
+    rounded: "0.25rem",
   },
   font: {
     size: {
       small: "0.75rem",
       regular: "1rem",
+      large: "1.25rem",
     },
     weight: {
       light: 300,

@@ -86,7 +86,7 @@ export const Form = () => {
           required
         />
         <SButtonsWrapper>
-          <Button type="button" secondary href="/signin">
+          <Button type="button" variant="secondary" href="/signin">
             Login
           </Button>
           <Button>Submit</Button>
