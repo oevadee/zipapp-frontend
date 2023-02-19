@@ -2,6 +2,7 @@ import React from "react";
 import { User } from "../../../../types/user";
 import { ColumnDef } from "@tanstack/react-table";
 import { Table } from "../../../../components/table";
+import Card from "../../../../components/card";
 
 interface Props {
   users: User[] | null;
@@ -24,5 +25,7 @@ export const UsersList: React.FC<Props> = ({ users }) => {
     []
   );
 
-  return users && <Table data={users} columns={cols} />;
+  return (
+    <Card noPadding>{users && <Table data={users} columns={cols} />}</Card>
+  );
 };

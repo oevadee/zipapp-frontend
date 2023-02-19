@@ -21,9 +21,9 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
   React.useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
-      const decoded = jwt_decode<User>(token);
+      const decoded = jwt_decode<{ sub: string; email: string }>(token);
       setUser({
-        _id: decoded._id,
+        _id: decoded.sub,
         email: decoded.email,
       });
     }
