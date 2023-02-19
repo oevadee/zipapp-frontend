@@ -8,7 +8,7 @@ const SWrapper = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-const SInput = styled.input`
+const SInput = styled.input<{ textDark?: boolean }>`
   position: relative;
   background: none;
   top: 0;
@@ -16,7 +16,8 @@ const SInput = styled.input`
   width: 100%;
   height: 100%;
   padding: 12px;
-  color: ${({ theme }) => theme.color.white};
+  color: ${({ theme, textDark }) =>
+    textDark ? theme.color.spaceCadet : theme.color.white};
   border: none;
   border-bottom: ${({ theme }) => theme.border.input};
   display: inline-block;
@@ -54,6 +55,7 @@ interface Props {
   type?: React.HTMLInputTypeAttribute;
   placeholder?: string;
   required?: boolean;
+  textDark?: boolean;
 }
 
 export const Input: React.FC<Props> = ({
@@ -63,10 +65,12 @@ export const Input: React.FC<Props> = ({
   type = "text",
   placeholder = "Insert text here",
   required,
+  textDark,
 }) => {
   return (
     <SWrapper>
       <SInput
+        textDark={textDark}
         type={type}
         placeholder={placeholder}
         {...register(name)}

@@ -19,6 +19,7 @@ const SWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+  color: ${({ theme }) => theme.color.spaceCadet};
 `;
 
 const SButtonWrapper = styled.div`
@@ -28,7 +29,7 @@ const SButtonWrapper = styled.div`
   gap: 0.5rem;
 `;
 
-const SAlreadyHaveAnAccountWrapper = styled.div`
+const SAuthNavigateWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -77,6 +78,7 @@ export const Form = () => {
           register={register}
           name="email"
           placeholder="Insert email here"
+          textDark
         />
         <Input
           label="password"
@@ -84,14 +86,15 @@ export const Form = () => {
           register={register}
           name="password"
           placeholder="Insert password here"
+          textDark
         />
         <SButtonWrapper>
-          <SAlreadyHaveAnAccountWrapper>
-            <p>Already have an account?</p>
-            <Button href="/signup" variant="text">
+          <SAuthNavigateWrapper>
+            <p>Don't have an account yet?</p>
+            <Button href="/signup" variant="text" textDark>
               Signup
             </Button>
-          </SAlreadyHaveAnAccountWrapper>
+          </SAuthNavigateWrapper>
           <Button>Submit</Button>
         </SButtonWrapper>
       </form>

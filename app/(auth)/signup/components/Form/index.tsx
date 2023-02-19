@@ -16,12 +16,22 @@ const SWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+  color: ${({ theme }) => theme.color.spaceCadet};
 `;
 
-const SButtonsWrapper = styled.div`
+const SButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  gap: 0.5rem;
+`;
+
+const SAuthNavigateWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin-left: auto;
+  font-size: ${({ theme }) => theme.font.size.small};
+  gap: 0.25rem;
 `;
 
 type FormData = {
@@ -85,12 +95,15 @@ export const Form = () => {
           placeholder="Confirm password here"
           required
         />
-        <SButtonsWrapper>
-          <Button type="button" variant="secondary" href="/signin">
-            Login
-          </Button>
+        <SButtonWrapper>
+          <SAuthNavigateWrapper>
+            <p>Already have an account?</p>
+            <Button href="/signin" variant="text" textDark>
+              Signin
+            </Button>
+          </SAuthNavigateWrapper>
           <Button>Submit</Button>
-        </SButtonsWrapper>
+        </SButtonWrapper>
       </form>
     </SWrapper>
   );

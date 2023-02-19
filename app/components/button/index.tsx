@@ -4,8 +4,9 @@ import styled, { css } from "styled-components";
 
 type ButtonVariant = "primary" | "secondary" | "text";
 
-const buttonStyles = css<{ variant?: ButtonVariant }>`
-  color: white;
+const buttonStyles = css<{ variant?: ButtonVariant; textDark?: boolean }>`
+  color: ${({ theme, textDark }) =>
+    textDark ? theme.color.spaceCadet : theme.color.white};
   display: inline-block;
   padding: ${({ variant }) => (variant === "text" ? "" : "6px 8px")};
   border-radius: 5px;
@@ -42,6 +43,7 @@ interface Props {
   variant?: ButtonVariant;
   href?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  textDark?: boolean;
 }
 
 export const Button: React.FC<Props> = ({
@@ -49,16 +51,17 @@ export const Button: React.FC<Props> = ({
   type = "submit",
   variant = "primary",
   href,
+  textDark,
   ...rest
 }) => {
   return (
     <>
       {href ? (
-        <SLink href={href} type={type} variant={variant}>
+        <SLink href={href} type={type} variant={variant} textDark={textDark}>
           {children || "Click"}
         </SLink>
       ) : (
-        <SButton type={type} variant={variant} {...rest}>
+        <SButton type={type} variant={variant} textDark={textDark} {...rest}>
           {children || "Click"}
         </SButton>
       )}

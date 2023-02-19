@@ -1,10 +1,15 @@
+"use client";
+
 import React from "react";
+import Card from "../../components/card";
 import { Form } from "./components/Form";
 
 const SigninPage = () => {
   return (
     <>
-      <Form />
+      <Card title="Sign in">
+        <Form />
+      </Card>
     </>
   );
 };
