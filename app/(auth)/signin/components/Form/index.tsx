@@ -12,6 +12,7 @@ import { Button } from "../../../../components/button";
 import { useUser } from "../../../../context/user";
 import { decodeJwtToken } from "../../../../utils/decodeJwtToken";
 import { User } from "../../../../types/user";
+import { appUrl } from "../../../../constants";
 
 const SWrapper = styled.div`
   display: flex;
@@ -50,7 +51,7 @@ export const Form = () => {
   const { setUser } = useUser();
 
   const onSubmit: SubmitHandler<FormData> = async ({ email, password }) => {
-    const { data } = await axios.post("http://localhost:3000/auth/signin", {
+    const { data } = await axios.post(`${appUrl}/auth/signin`, {
       email,
       password,
     });

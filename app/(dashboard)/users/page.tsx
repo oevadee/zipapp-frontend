@@ -5,6 +5,7 @@ import React from "react";
 import styled from "styled-components";
 import { User } from "../../types/user";
 import { UsersList } from "./components/users-list";
+import { appUrl } from "../../constants";
 
 const SHeading = styled.h1`
   margin-bottom: 1rem;
@@ -16,7 +17,7 @@ const UsersPage = () => {
   React.useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (token) {
-      axios("http://localhost:3000/users", {
+      axios(`${appUrl}/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

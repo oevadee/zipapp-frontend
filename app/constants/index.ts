@@ -1,1 +1,1 @@
-export const appUrl = "http://localhost:8080";
+export const appUrl = process.env.NEXT_PUBLIC_APP_URL;

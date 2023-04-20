@@ -7,6 +7,7 @@ import { Button } from "../../components/button";
 import Card from "../../components/card";
 import { Input } from "../../components/input";
 import { useUser } from "../../context/user";
+import { appUrl } from "../../constants";
 
 type FormData = {
   email: string;
@@ -21,12 +22,11 @@ const ProfilePage = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = async ({ email }) => {
-    console.log(user);
     try {
       const token = localStorage.getItem("access_token");
       if (token) {
         const { data } = await axios.patch(
-          `http://localhost:3000/users/${user?._id}`,
+          `${appUrl}/users/${user?._id}`,
           { email },
           {
             headers: {
