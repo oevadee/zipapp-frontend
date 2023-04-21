@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import styled from "styled-components";
+import { User } from "../../types/user";
 
 const SWrapper = styled.div`
   width: 100%;
@@ -33,15 +34,17 @@ const STable = styled.table`
 `;
 
 interface ReactTableProps<T extends object> {
-  data: T[];
-  columns: ColumnDef<T>[];
+  data: User[];
+  columns: ColumnDef<User>[];
+  handleDeleteRow?: (userId: string) => void;
 }
 
 export const Table = <T extends object>({
   data,
   columns,
+  handleDeleteRow,
 }: ReactTableProps<T>) => {
-  const table = useReactTable({
+  const table = useReactTable<User>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -52,7 +55,6 @@ export const Table = <T extends object>({
       <STable>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => {
-            console.log(headerGroup);
             return (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (

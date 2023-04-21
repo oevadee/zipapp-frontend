@@ -15,7 +15,7 @@ export const theme = {
     inputFocus: "0.125rem solid #FF9505",
   },
   radius: {
-    rounded: "0.25rem",
+    rounded: "0.5rem",
   },
   font: {
     size: {

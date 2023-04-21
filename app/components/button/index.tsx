@@ -1,10 +1,15 @@
-import Link from "next/link";
 import * as React from "react";
+import Link from "next/link";
 import styled, { css } from "styled-components";
 
 type ButtonVariant = "primary" | "secondary" | "text";
 
-const buttonStyles = css<{ variant?: ButtonVariant; textDark?: boolean }>`
+type StyleProps = {
+  variant?: ButtonVariant;
+  textDark?: boolean;
+};
+
+const buttonStyles = css<StyleProps>`
   color: ${({ theme, textDark }) =>
     textDark ? theme.color.spaceCadet : theme.color.white};
   display: inline-block;
@@ -33,17 +38,15 @@ const SButton = styled.button`
   ${buttonStyles}
 `;
 
-const SLink = styled(Link)`
+const SSpan = styled.span`
   ${buttonStyles}
 `;
 
-interface Props {
+interface Props extends StyleProps {
   children?: React.ReactNode;
   type?: "button" | "submit" | "reset";
-  variant?: ButtonVariant;
   href?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  textDark?: boolean;
 }
 
 export const Button: React.FC<Props> = ({
@@ -51,15 +54,17 @@ export const Button: React.FC<Props> = ({
   type = "submit",
   variant = "primary",
   href,
-  textDark,
+  textDark = false,
   ...rest
 }) => {
   return (
     <>
       {href ? (
-        <SLink href={href} type={type} variant={variant} textDark={textDark}>
-          {children || "Click"}
-        </SLink>
+        <Link href={href} type={type}>
+          <SSpan variant={variant} textDark={textDark}>
+            {children || "Click"}
+          </SSpan>
+        </Link>
       ) : (
         <SButton type={type} variant={variant} textDark={textDark} {...rest}>
           {children || "Click"}
