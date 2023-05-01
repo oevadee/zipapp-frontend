@@ -29,6 +29,7 @@ const AuthLayout = ({ children }: Props) => {
       if (!publicRoutes.includes(window.location.href)) {
         console.log("Auth no url in public routes -> navigate to: /signin");
         console.log(`Auth url: ${window.location.href}`);
+        console.log(publicRoutes);
         // replace("/signin");
       }
     } else {
