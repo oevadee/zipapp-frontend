@@ -25,18 +25,19 @@ const AuthLayout = ({ children }: Props) => {
     const token = localStorage.getItem("access_token");
 
     if (!token) {
+      console.log("Auth No token");
       if (!publicRoutes.includes(window.location.href)) {
+        console.log("Auth no url in public routes -> navigate to: /signin");
         replace("/signin");
       }
     } else {
       const isValid = validateAccessToken(token);
+      console.log(`Auth isValid: ${isValid}`);
       if (isValid) {
         setAuthenticated(true);
         if (publicRoutes.includes(window.location.href)) {
           replace("/");
         }
-      } else {
-        replace("/signin");
       }
     }
   }, []);

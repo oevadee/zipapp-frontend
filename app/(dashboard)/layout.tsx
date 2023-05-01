@@ -23,6 +23,7 @@ const DashboardLayout = ({ children }: Props) => {
     const token = localStorage.getItem("access_token");
 
     if (token && validateAccessToken(token)) {
+      console.log(`auth isValid: ${validateAccessToken(token)}`);
       setAuthenticated(true);
       if (publicRoutes.includes(window.location.href)) {
         replace("/");
