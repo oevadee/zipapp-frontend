@@ -28,7 +28,8 @@ const AuthLayout = ({ children }: Props) => {
       console.log("Auth No token");
       if (!publicRoutes.includes(window.location.href)) {
         console.log("Auth no url in public routes -> navigate to: /signin");
-        replace("/signin");
+        console.log(`Auth url: ${window.location.href}`);
+        // replace("/signin");
       }
     } else {
       const isValid = validateAccessToken(token);

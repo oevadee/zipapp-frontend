@@ -23,12 +23,14 @@ const DashboardLayout = ({ children }: Props) => {
     const token = localStorage.getItem("access_token");
 
     if (token && validateAccessToken(token)) {
-      console.log(`auth isValid: ${validateAccessToken(token)}`);
+      console.log(`Dashboard isValid: ${validateAccessToken(token)}`);
       setAuthenticated(true);
       if (publicRoutes.includes(window.location.href)) {
+        console.log("Dashboard no url in the publicRoutes, navigate to: /");
         replace("/");
       }
     } else {
+      console.log(`Dashboard token not valid, navigate to: /signin`);
       replace("/signin");
     }
   }, []);
