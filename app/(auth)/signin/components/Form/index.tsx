@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "../../../../components/input";
 import { Button } from "../../../../components/button";
 import { useUser } from "../../../../context/user";
-import { decodeJwtToken } from "../../../../utils/decodeJwtToken";
+import { decodeJwtToken } from "../../../../utils/jwt";
 import { User } from "../../../../types/user";
 import { appUrl } from "../../../../constants";
 

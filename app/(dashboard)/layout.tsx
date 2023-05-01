@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { publicRoutes } from "../constants/routes";
 import styled from "styled-components";
 import { Navigation } from "../modules/navigation";
+import { validateAccessToken } from "../utils/jwt";
 
 const SWrapper = styled.div`
   padding: 0 2rem;
@@ -21,7 +22,7 @@ const DashboardLayout = ({ children }: Props) => {
   React.useEffect(() => {
     const token = localStorage.getItem("access_token");
 
-    if (token) {
+    if (token && validateAccessToken(token)) {
       setAuthenticated(true);
       if (publicRoutes.includes(window.location.href)) {
         replace("/");

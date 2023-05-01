@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import * as React from "react";
 import styled from "styled-components";
 import { publicRoutes } from "../constants/routes";
+import { validateAccessToken } from "../utils/jwt";
 
 const SWrapper = styled.div`
   height: 100vh;
@@ -28,9 +29,14 @@ const AuthLayout = ({ children }: Props) => {
         replace("/signin");
       }
     } else {
-      setAuthenticated(true);
-      if (publicRoutes.includes(window.location.href)) {
-        replace("/");
+      const isValid = validateAccessToken(token);
+      if (isValid) {
+        setAuthenticated(true);
+        if (publicRoutes.includes(window.location.href)) {
+          replace("/");
+        }
+      } else {
+        replace("/signin");
       }
     }
   }, []);
