@@ -1,10 +1,12 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import styled, { ThemeProvider } from "styled-components";
 import { UserContextProvider } from "./context/user";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { theme } from "./styles/theme";
+import { validateAccessToken } from "./utils/jwt";
 
 const SWrapper = styled.div`
   display: flex;
@@ -25,6 +27,19 @@ interface Props {
 }
 
 const RootLayout: React.FC<Props> = ({ children }) => {
+  const { push } = useRouter();
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      const isValid = validateAccessToken(token);
+      if (!isValid) {
+        localStorage.removeItem("access_token");
+        push("/");
+      }
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
