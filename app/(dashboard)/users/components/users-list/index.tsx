@@ -3,7 +3,7 @@ import { User } from "../../../../types/user";
 import { ColumnDef } from "@tanstack/react-table";
 import { Table } from "../../../../components/table";
 import Card from "../../../../components/card";
-import { appUrl } from "../../../../constants";
+import { backendUrl } from "../../../../constants";
 import axios from "axios";
 
 interface Props {
@@ -39,7 +39,7 @@ export const UsersList: React.FC<Props> = ({ users }) => {
     try {
       const token = localStorage.getItem("access_token");
       if (token) {
-        const { data } = await axios.delete(`${appUrl}/users/${userId}`, {
+        const { data } = await axios.delete(`${backendUrl}/users/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -9,7 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Input } from "../../../../components/input";
 import { Button } from "../../../../components/button";
-import { appUrl } from "../../../../constants";
+import { backend } from "../../../../constants";
 
 const SWrapper = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ export const Form = () => {
     confirmPassword,
   }) => {
     if (password === confirmPassword && email) {
-      const { data } = await axios.post(`${appUrl}/auth/signup`, {
+      const { data } = await axios.post(`${backend}/auth/signup`, {
         email,
         password,
         confirmPassword,

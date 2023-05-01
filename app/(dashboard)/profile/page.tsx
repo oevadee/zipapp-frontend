@@ -7,7 +7,7 @@ import { Button } from "../../components/button";
 import Card from "../../components/card";
 import { Input } from "../../components/input";
 import { useUser } from "../../context/user";
-import { appUrl } from "../../constants";
+import { backendUrl } from "../../constants";
 
 type FormData = {
   email: string;
@@ -26,7 +26,7 @@ const ProfilePage = () => {
       const token = localStorage.getItem("access_token");
       if (token) {
         const { data } = await axios.patch(
-          `${appUrl}/users/${user?._id}`,
+          `${backendUrl}/users/${user?._id}`,
           { email },
           {
             headers: {
