@@ -1,21 +1,25 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
+title: feature
 labels: ''
 assignees: ''
 
 ---
 
 ### Task Description:
-We want to add 2 set aof roles:
-- admin
-- user
+[Provide a brief description of the task, including its purpose and goals.]
 
 ### Task Details:
-Only admin should be able to see the delete button in the users tab and should be able to delete the user
+[List everything that needs to be done]
 
 ### Subtasks:
-- Create a new role in a DB
-- Adjust FE users view to support admin role
-- Add backend validation for admin actions
+- [Subtask 1]
+- [Subtask 2]
+- [Subtask 3]
+
+### Dependencies:
+[List any tasks or deliverables that are dependent on the completion of this task]
+
+### Notes:
+[Include any additional notes or important information relevant to the task]
