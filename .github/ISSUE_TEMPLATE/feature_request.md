@@ -7,14 +7,15 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+### Task Description:
+We want to add 2 set aof roles:
+- admin
+- user
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+### Task Details:
+Only admin should be able to see the delete button in the users tab and should be able to delete the user
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+### Subtasks:
+- Create a new role in a DB
+- Adjust FE users view to support admin role
+- Add backend validation for admin actions
